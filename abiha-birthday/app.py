@@ -11,7 +11,16 @@ st.set_page_config(
 )
 
 # Read your birthday website
-html_path = Path("birthday-scrapbook.html")
+BASE_DIR = Path(__file__).resolve().parent
+
+html_path = BASE_DIR / "birthday-scrapbook.html"
+
+if not html_path.exists():
+    raise FileNotFoundError(
+        f"HTML file not found: {html_path}. "
+        f"Files in this folder: {[p.name for p in BASE_DIR.iterdir()]}"
+    )
+
 html = html_path.read_text(encoding="utf-8")
 
 # Convert music to Base64 so it can play inside the website
