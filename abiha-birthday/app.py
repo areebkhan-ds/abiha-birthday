@@ -13,7 +13,7 @@ st.set_page_config(
 # Read your birthday website
 BASE_DIR = Path(__file__).resolve().parent
 
-html_path = BASE_DIR / "birthday-scrapbook.html"
+html_path = BASE_DIR / "Abiha_Birthday_Scrapbook_Photo_Path_Fixed.html"
 
 if not html_path.exists():
     raise FileNotFoundError(
