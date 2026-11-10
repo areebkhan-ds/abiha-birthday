@@ -24,8 +24,20 @@ if not html_path.exists():
 html = html_path.read_text(encoding="utf-8")
 
 # Convert music to Base64 so it can play inside the website
-music_path = Path("music/leberch-romantic-584475.mp3")
-music_data = base64.b64encode(music_path.read_bytes()).decode("utf-8")
+# Automatically find the MP3 file
+music_files = list(BASE_DIR.rglob("*.mp3"))
+
+if not music_files:
+    raise FileNotFoundError(
+        "No MP3 file found. Please upload your birthday music "
+        "inside the music folder."
+    )
+
+music_path = music_files[0]
+
+music_data = base64.b64encode(
+    music_path.read_bytes()
+).decode("utf-8")
 
 html = html.replace(
     'var MUSIC_SRC="abiha_website_v2/leberch-romantic-584475.mp3";',
